@@ -13,7 +13,7 @@
     h1 { color: #4a6a61; font-weight: 600; font-size: 2.2rem; margin-bottom: 0.2rem; }
     .subtitle { color: #a0b2aa; font-size: 1.1rem; margin-bottom: 0.5rem; }
     .intro { background: #d8e4db; border-radius: 10px; padding: 1.1rem 1.3rem; color: #2e3a36; font-size: 1.06rem; margin-bottom: 1.5rem; box-shadow: 0 1px 4px rgba(255,255,255,0.15) inset; }
-    .chatbox { background: #fff; border-radius: 10px; box-shadow: 0 1px 6px rgba(108,142,127,0.13); padding: 1.1rem; min-height: 180px; max-height: 300px; overflow-y: auto; margin-bottom: 1rem; font-size: 1rem; }
+    .chatbox { background: #fff; border-radius: 10px; box-shadow: 0 1px 6px rgba(108,142,127,0.13); padding: 1.1rem; min-height: 180px; max-height: 350px; overflow-y: auto; margin-bottom: 1rem; font-size: 1rem; }
     .message { margin-bottom: 1rem; display: flex; align-items: flex-start; }
     .message.hillary .bubble { background: #c9d7d0; color: #2e3a36; border-radius: 14px 14px 14px 3px; padding: 0.7rem 1rem; margin-left: 0.5rem; max-width: 75%; box-shadow: 0 2px 6px rgba(74,106,97,0.07); }
     .message.user .bubble { background: #4a6a61; color: #fff; border-radius: 14px 14px 3px 14px; padding: 0.7rem 1rem; margin-right: 0.5rem; align-self: flex-end; margin-left: auto; max-width: 75%; box-shadow: 0 2px 6px rgba(74,106,97,0.09); }
@@ -22,10 +22,8 @@
     .chat-input:focus { border: 1.5px solid #4a6a61; }
     .send-btn { background: #6c8e7f; color: #fff; font-weight: 600; border: none; border-radius: 7px; padding: 0.7rem 1.4rem; font-size: 1.08rem; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 8px rgba(108,142,127,0.18); }
     .send-btn:hover { background: #4a6a61; }
-    .prompt-box { background: #fff8e1; border-radius: 8px; padding: 1.1rem 1.2rem; color: #8d6e63; margin: 1.5rem 0 0.5rem 0; text-align: center; box-shadow: 0 1px 8px rgba(255, 208, 126, 0.11);}
-    .buy-btn { background: #ffae42; color: #4a6a61; font-weight: 700; border: none; border-radius: 7px; padding: 0.7rem 2.2rem; font-size: 1.1rem; cursor: pointer; margin-top: 1rem; }
-    .buy-btn:hover { background: #ffc870; }
     footer { text-align: center; color: #9aa7a0; font-size: 0.92rem; margin-top: 2rem; }
+    .loading { font-style: italic; color: #8a8f8c; margin-left: 0.7rem; }
   </style>
 </head>
 <body>
@@ -49,15 +47,8 @@
     <form class="chat-input-row" id="chat-form" autocomplete="off">
       <input type="text" class="chat-input" id="user-input" placeholder="Type your question..." required />
       <button class="send-btn" type="submit">Send</button>
+      <span class="loading" id="loading" style="display:none;">Hillary is thinking…</span>
     </form>
-    <div id="paywall" style="display:none;">
-      <div class="prompt-box">
-        <strong>Time’s up, darling!</strong><br>
-        I’d love to keep supporting you. 
-        <br>Unlock unlimited, thoughtful conversations for less than <b>$3 a month</b>.<br>
-        <button class="buy-btn" id="buy-btn">Buy Now</button>
-      </div>
-    </div>
     <footer>
       &copy; 2025 HelloHillary AI. For support, contact hillary@hillaryhere.com
     </footer>
@@ -66,25 +57,26 @@
     const chatbox = document.getElementById('chatbox');
     const form = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
-    const paywall = document.getElementById('paywall');
-    const buyBtn = document.getElementById('buy-btn');
+    const loading = document.getElementById('loading');
 
-    // Longer, more "therapist-y" responses with follow-ups
+    // Example of in-depth, therapist-style responses with follow-ups
     const hillaryResponses = [
-      "That’s a wonderful question, and I’m so glad you’re opening up here. Could you share a bit more about what brought this up for you today?",
-      "It's perfectly natural to feel that way, love. Sometimes, our early experiences set patterns that echo in our adult lives. What do you notice most about how you respond in relationships?",
-      "Thank you for sharing that. Healing core wounds often begins with gentle self-awareness. When was the first time you remember feeling this way?",
-      "You're showing great courage by talking about this. Is there a recent situation where your attachment style felt especially present?",
-      "I hear you. Let’s explore together: What do you feel you need most when these feelings arise?",
-      "That’s an important insight. Have you ever tried journaling or mindfulness when these patterns show up? What was that like for you?",
-      "Many people find comfort in recognising their patterns. If you could change one thing about your attachment style, what would it be?",
-      "You’re doing brilliantly, even if it doesn’t always feel that way. What does support look like to you right now?",
-      "It’s a journey, not a sprint, darling. Is there a small, kind step you might take for yourself this week?"
+      `That’s such a thoughtful question, and I want you to know you’re not alone in wondering about this. Secure and insecure attachment styles can deeply shape our experience of love and trust. According to research by Dr. Sue Johnson and others, the patterns developed in childhood often echo into our adult relationships, but they can be changed with awareness and gentle effort. What’s been your experience with attachment—do you notice any repeating patterns in your relationships, love?`,
+      `An excellent topic to explore. Healing core wounds is about compassionately acknowledging our earliest hurts, and then learning to nurture those needs in the present. Many therapists suggest mindfulness, journaling, and even somatic work to reconnect with your inner self. There’s a brilliant article on Psychology Today about this, if you’d like the link! What’s one wound you’d like to start healing?`,
+      `You’re showing so much courage by opening up. Childhood trauma can affect not only our thoughts but also the way our bodies react to stress. The NHS and many UK therapists recommend grounding exercises—like deep breathing or feeling your feet on the floor—to help bring you back to the present. Have you tried anything like that before, darling?`,
+      `That’s a very insightful question. Studies show that anxious or avoidant attachment styles often develop as adaptive responses to our environment. It’s not your fault, love. Healing begins with gentle curiosity. What’s one thing you’d like to feel more secure about in your connections?`,
+      `A wonderful point to bring up. Many people find that learning about their attachment style is the first step to deep transformation. There’s even evidence that working with an empathetic guide (like me!) can accelerate healing. Would you like some practical exercises, or a book recommendation on this topic?`,
+      `You’re doing brilliantly, even if it doesn’t always feel that way. Remember, healing is a journey, not a sprint. What’s one small act of kindness you can offer yourself this week?`
     ];
 
-    let messageCount = 0;
-    let sessionActive = true;
-    let sessionTimer = setTimeout(showPaywall, 5 * 60 * 1000); // 5 min session
+    // Simulate a web search and in-depth answer (replace with real API call for live data)
+    async function getHillaryAnswer(userQuestion) {
+      // Here, you could call a real AI or web search API and return a custom answer.
+      // For now, we’ll rotate through in-depth samples.
+      const reply = hillaryResponses[Math.floor(Math.random() * hillaryResponses.length)];
+      // Always end with a gentle follow-up prompt.
+      return reply;
+    }
 
     function addMessage(sender, text) {
       const msgDiv = document.createElement('div');
@@ -97,45 +89,20 @@
       chatbox.scrollTop = chatbox.scrollHeight;
     }
 
-    function showPaywall() {
-      sessionActive = false;
-      form.style.display = "none";
-      paywall.style.display = "block";
-      clearTimeout(sessionTimer);
-    }
-
-    function unlockSession() {
-      sessionActive = true;
-      form.style.display = "flex";
-      paywall.style.display = "none";
-      messageCount = 0;
-      sessionTimer = setTimeout(showPaywall, 60 * 60 * 1000); // 1 hour, or as desired
-      addMessage("hillary", "Thank you for becoming a member, love! Now we can truly go deep. What would you like to explore next?");
-    }
-
-    form.addEventListener('submit', function(e) {
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
-      if (!sessionActive) return;
       const question = userInput.value.trim();
       if (!question) return;
       addMessage('user', question);
       userInput.value = '';
-      messageCount++;
-      if (sessionActive && messageCount >= 5) {
-        setTimeout(showPaywall, 1200); // Small delay so last message still goes through
-      }
-      setTimeout(() => {
-        // Pick a longer, thoughtful Hillary response
-        const reply = hillaryResponses[Math.floor(Math.random() * hillaryResponses.length)];
+      loading.style.display = "inline";
+      // Simulate delay as if searching the internet or calling AI
+      setTimeout(async () => {
+        const reply = await getHillaryAnswer(question);
         addMessage('hillary', reply);
-      }, 1200);
+        loading.style.display = "none";
+      }, 1800);
     });
-
-    if (buyBtn) {
-      buyBtn.addEventListener('click', function() {
-        unlockSession();
-      });
-    }
   </script>
 </body>
 </html>
