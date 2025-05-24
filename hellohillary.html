@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HelloHillary – Your Calming AI Therapy Companion</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
+    body {
+      background: #f4f7f6;
+      font-family: 'Montserrat', sans-serif;
+      color: #2e3a36;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 480px;
+      margin: 3rem auto;
+      background: #e7ebe9;
+      border-radius: 14px;
+      box-shadow: 0 4px 18px rgba(34,49,49,0.11);
+      padding: 2.5rem 2rem 1.5rem 2rem;
+    }
+    header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 2px 8px rgba(74,106,97,0.12);
+      object-fit: cover;
+      background: #d8e4db;
+      display: inline-block;
+    }
+    h1 {
+      color: #4a6a61;
+      font-weight: 600;
+      font-size: 2.2rem;
+      margin-bottom: 0.2rem;
+    }
+    .subtitle {
+      color: #a0b2aa;
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    .intro {
+      background: #d8e4db;
+      border-radius: 10px;
+      padding: 1.1rem 1.3rem;
+      color: #2e3a36;
+      font-size: 1.06rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 4px rgba(255,255,255,0.15) inset;
+    }
+    .chatbox {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 1px 6px rgba(108,142,127,0.13);
+      padding: 1.1rem;
+      min-height: 180px;
+      max-height: 300px;
+      overflow-y: auto;
+      margin-bottom: 1rem;
+      font-size: 1rem;
+    }
+    .message {
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: flex-start;
+    }
+    .message.hillary .bubble {
+      background: #c9d7d0;
+      color: #2e3a36;
+      border-radius: 14px 14px 14px 3px;
+      padding: 0.7rem 1rem;
+      margin-left: 0.5rem;
+      max-width: 75%;
+      box-shadow: 0 2px 6px rgba(74,106,97,0.07);
+    }
+    .message.user .bubble {
+      background: #4a6a61;
+      color: #fff;
+      border-radius: 14px 14px 3px 14px;
+      padding: 0.7rem 1rem;
+      margin-right: 0.5rem;
+      align-self: flex-end;
+      margin-left: auto;
+      max-width: 75%;
+      box-shadow: 0 2px 6px rgba(74,106,97,0.09);
+    }
+    .chat-input-row {
+      display: flex;
+      gap: 0.7rem;
+      align-items: center;
+    }
+    .chat-input {
+      flex: 1;
+      padding: 0.7rem 1rem;
+      border-radius: 8px;
+      border: 1px solid #c9d7d0;
+      font-size: 1rem;
+      font-family: inherit;
+      background: #fff;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .chat-input:focus {
+      border: 1.5px solid #4a6a61;
+    }
+    .send-btn {
+      background: #6c8e7f;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 7px;
+      padding: 0.7rem 1.4rem;
+      font-size: 1.08rem;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(108,142,127,0.18);
+    }
+    .send-btn:hover {
+      background: #4a6a61;
+    }
+    footer {
+      text-align: center;
+      color: #9aa7a0;
+      font-size: 0.92rem;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main">
+    <header>
+      <img src="https://ui-avatars.com/api/?name=Hillary&background=d8e4db&color=4a6a61&size=140" alt="Hillary's avatar" class="avatar" />
+      <h1>HelloHillary</h1>
+      <div class="subtitle">Your Calming AI for Attachment Healing</div>
+    </header>
+    <div class="intro">
+      <strong>Hillary</strong> is your friendly British AI therapist, expertly guiding you through healing childhood wounds, attachment styles, and core traumas.<br>
+      Ask her anything about relationships, emotional patterns, or personal growth. She’s here to listen—and keep you coming back for more.
+    </div>
+    <div class="chatbox" id="chatbox" aria-live="polite">
+      <div class="message hillary">
+        <div class="bubble">
+          👋 Hello, love! I’m Hillary. What’s on your mind today?
+        </div>
+      </div>
+    </div>
+    <form class="chat-input-row" id="chat-form" autocomplete="off">
+      <input type="text" class="chat-input" id="user-input" placeholder="Type your question..." required />
+      <button class="send-btn" type="submit">Send</button>
+    </form>
+    <footer>
+      &copy; 2025 HelloHillary AI. For support, contact hillary@hillaryhere.com
+    </footer>
+  </div>
+  <script>
+    const chatbox = document.getElementById('chatbox');
+    const form = document.getElementById('chat-form');
+    const userInput = document.getElementById('user-input');
+
+    // Sample responses for demo purposes
+    const demoResponses = [
+      "That's a wonderful question. Let’s explore what this means for you.",
+      "You’re doing brilliantly, even if it doesn’t always feel that way.",
+      "Can you tell me a bit more about how you felt in that moment?",
+      "Remember, love, healing is a journey, not a race.",
+      "Attachment patterns are shaped early, but they can be healed at any age.",
+      "It’s perfectly natural to feel that way. Let’s uncover where it might come from."
+    ];
+
+    function addMessage(sender, text) {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'message ' + sender;
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = text;
+      msgDiv.appendChild(bubble);
+      chatbox.appendChild(msgDiv);
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const question = userInput.value.trim();
+      if (!question) return;
+      addMessage('user', question);
+      userInput.value = '';
+      setTimeout(() => {
+        // For demo: pick a random Hillary response
+        const reply = demoResponses[Math.floor(Math.random() * demoResponses.length)];
+        addMessage('hillary', reply);
+      }, 1000);
+    });
+  </script>
+</body>
+</html>
