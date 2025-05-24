@@ -6,131 +6,26 @@
   <title>HelloHillary – Your Calming AI Therapy Companion</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap');
-    body {
-      background: #f4f7f6;
-      font-family: 'Montserrat', sans-serif;
-      color: #2e3a36;
-      margin: 0;
-      padding: 0;
-    }
-    .container {
-      max-width: 480px;
-      margin: 3rem auto;
-      background: #e7ebe9;
-      border-radius: 14px;
-      box-shadow: 0 4px 18px rgba(34,49,49,0.11);
-      padding: 2.5rem 2rem 1.5rem 2rem;
-    }
-    header {
-      text-align: center;
-      margin-bottom: 1.5rem;
-    }
-    .avatar {
-      width: 70px;
-      height: 70px;
-      border-radius: 50%;
-      margin-bottom: 0.75rem;
-      box-shadow: 0 2px 8px rgba(74,106,97,0.12);
-      object-fit: cover;
-      background: #d8e4db;
-      display: inline-block;
-    }
-    h1 {
-      color: #4a6a61;
-      font-weight: 600;
-      font-size: 2.2rem;
-      margin-bottom: 0.2rem;
-    }
-    .subtitle {
-      color: #a0b2aa;
-      font-size: 1.1rem;
-      margin-bottom: 0.5rem;
-    }
-    .intro {
-      background: #d8e4db;
-      border-radius: 10px;
-      padding: 1.1rem 1.3rem;
-      color: #2e3a36;
-      font-size: 1.06rem;
-      margin-bottom: 1.5rem;
-      box-shadow: 0 1px 4px rgba(255,255,255,0.15) inset;
-    }
-    .chatbox {
-      background: #fff;
-      border-radius: 10px;
-      box-shadow: 0 1px 6px rgba(108,142,127,0.13);
-      padding: 1.1rem;
-      min-height: 180px;
-      max-height: 300px;
-      overflow-y: auto;
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-    .message {
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: flex-start;
-    }
-    .message.hillary .bubble {
-      background: #c9d7d0;
-      color: #2e3a36;
-      border-radius: 14px 14px 14px 3px;
-      padding: 0.7rem 1rem;
-      margin-left: 0.5rem;
-      max-width: 75%;
-      box-shadow: 0 2px 6px rgba(74,106,97,0.07);
-    }
-    .message.user .bubble {
-      background: #4a6a61;
-      color: #fff;
-      border-radius: 14px 14px 3px 14px;
-      padding: 0.7rem 1rem;
-      margin-right: 0.5rem;
-      align-self: flex-end;
-      margin-left: auto;
-      max-width: 75%;
-      box-shadow: 0 2px 6px rgba(74,106,97,0.09);
-    }
-    .chat-input-row {
-      display: flex;
-      gap: 0.7rem;
-      align-items: center;
-    }
-    .chat-input {
-      flex: 1;
-      padding: 0.7rem 1rem;
-      border-radius: 8px;
-      border: 1px solid #c9d7d0;
-      font-size: 1rem;
-      font-family: inherit;
-      background: #fff;
-      outline: none;
-      transition: border 0.2s;
-    }
-    .chat-input:focus {
-      border: 1.5px solid #4a6a61;
-    }
-    .send-btn {
-      background: #6c8e7f;
-      color: #fff;
-      font-weight: 600;
-      border: none;
-      border-radius: 7px;
-      padding: 0.7rem 1.4rem;
-      font-size: 1.08rem;
-      cursor: pointer;
-      transition: background 0.2s;
-      box-shadow: 0 2px 8px rgba(108,142,127,0.18);
-    }
-    .send-btn:hover {
-      background: #4a6a61;
-    }
-    footer {
-      text-align: center;
-      color: #9aa7a0;
-      font-size: 0.92rem;
-      margin-top: 2rem;
-    }
+    body { background: #f4f7f6; font-family: 'Montserrat', sans-serif; color: #2e3a36; margin: 0; padding: 0; }
+    .container { max-width: 480px; margin: 3rem auto; background: #e7ebe9; border-radius: 14px; box-shadow: 0 4px 18px rgba(34,49,49,0.11); padding: 2.5rem 2rem 1.5rem 2rem; }
+    header { text-align: center; margin-bottom: 1.5rem; }
+    .avatar { width: 70px; height: 70px; border-radius: 50%; margin-bottom: 0.75rem; box-shadow: 0 2px 8px rgba(74,106,97,0.12); object-fit: cover; background: #d8e4db; display: inline-block; }
+    h1 { color: #4a6a61; font-weight: 600; font-size: 2.2rem; margin-bottom: 0.2rem; }
+    .subtitle { color: #a0b2aa; font-size: 1.1rem; margin-bottom: 0.5rem; }
+    .intro { background: #d8e4db; border-radius: 10px; padding: 1.1rem 1.3rem; color: #2e3a36; font-size: 1.06rem; margin-bottom: 1.5rem; box-shadow: 0 1px 4px rgba(255,255,255,0.15) inset; }
+    .chatbox { background: #fff; border-radius: 10px; box-shadow: 0 1px 6px rgba(108,142,127,0.13); padding: 1.1rem; min-height: 180px; max-height: 300px; overflow-y: auto; margin-bottom: 1rem; font-size: 1rem; }
+    .message { margin-bottom: 1rem; display: flex; align-items: flex-start; }
+    .message.hillary .bubble { background: #c9d7d0; color: #2e3a36; border-radius: 14px 14px 14px 3px; padding: 0.7rem 1rem; margin-left: 0.5rem; max-width: 75%; box-shadow: 0 2px 6px rgba(74,106,97,0.07); }
+    .message.user .bubble { background: #4a6a61; color: #fff; border-radius: 14px 14px 3px 14px; padding: 0.7rem 1rem; margin-right: 0.5rem; align-self: flex-end; margin-left: auto; max-width: 75%; box-shadow: 0 2px 6px rgba(74,106,97,0.09); }
+    .chat-input-row { display: flex; gap: 0.7rem; align-items: center; }
+    .chat-input { flex: 1; padding: 0.7rem 1rem; border-radius: 8px; border: 1px solid #c9d7d0; font-size: 1rem; font-family: inherit; background: #fff; outline: none; transition: border 0.2s; }
+    .chat-input:focus { border: 1.5px solid #4a6a61; }
+    .send-btn { background: #6c8e7f; color: #fff; font-weight: 600; border: none; border-radius: 7px; padding: 0.7rem 1.4rem; font-size: 1.08rem; cursor: pointer; transition: background 0.2s; box-shadow: 0 2px 8px rgba(108,142,127,0.18); }
+    .send-btn:hover { background: #4a6a61; }
+    .prompt-box { background: #fff8e1; border-radius: 8px; padding: 1.1rem 1.2rem; color: #8d6e63; margin: 1.5rem 0 0.5rem 0; text-align: center; box-shadow: 0 1px 8px rgba(255, 208, 126, 0.11);}
+    .buy-btn { background: #ffae42; color: #4a6a61; font-weight: 700; border: none; border-radius: 7px; padding: 0.7rem 2.2rem; font-size: 1.1rem; cursor: pointer; margin-top: 1rem; }
+    .buy-btn:hover { background: #ffc870; }
+    footer { text-align: center; color: #9aa7a0; font-size: 0.92rem; margin-top: 2rem; }
   </style>
 </head>
 <body>
@@ -155,6 +50,14 @@
       <input type="text" class="chat-input" id="user-input" placeholder="Type your question..." required />
       <button class="send-btn" type="submit">Send</button>
     </form>
+    <div id="paywall" style="display:none;">
+      <div class="prompt-box">
+        <strong>Time’s up, darling!</strong><br>
+        I’d love to keep supporting you. 
+        <br>Unlock unlimited, thoughtful conversations for less than <b>$3 a month</b>.<br>
+        <button class="buy-btn" id="buy-btn">Buy Now</button>
+      </div>
+    </div>
     <footer>
       &copy; 2025 HelloHillary AI. For support, contact hillary@hillaryhere.com
     </footer>
@@ -163,16 +66,25 @@
     const chatbox = document.getElementById('chatbox');
     const form = document.getElementById('chat-form');
     const userInput = document.getElementById('user-input');
+    const paywall = document.getElementById('paywall');
+    const buyBtn = document.getElementById('buy-btn');
 
-    // Sample responses for demo purposes
-    const demoResponses = [
-      "That's a wonderful question. Let’s explore what this means for you.",
-      "You’re doing brilliantly, even if it doesn’t always feel that way.",
-      "Can you tell me a bit more about how you felt in that moment?",
-      "Remember, love, healing is a journey, not a race.",
-      "Attachment patterns are shaped early, but they can be healed at any age.",
-      "It’s perfectly natural to feel that way. Let’s uncover where it might come from."
+    // Longer, more "therapist-y" responses with follow-ups
+    const hillaryResponses = [
+      "That’s a wonderful question, and I’m so glad you’re opening up here. Could you share a bit more about what brought this up for you today?",
+      "It's perfectly natural to feel that way, love. Sometimes, our early experiences set patterns that echo in our adult lives. What do you notice most about how you respond in relationships?",
+      "Thank you for sharing that. Healing core wounds often begins with gentle self-awareness. When was the first time you remember feeling this way?",
+      "You're showing great courage by talking about this. Is there a recent situation where your attachment style felt especially present?",
+      "I hear you. Let’s explore together: What do you feel you need most when these feelings arise?",
+      "That’s an important insight. Have you ever tried journaling or mindfulness when these patterns show up? What was that like for you?",
+      "Many people find comfort in recognising their patterns. If you could change one thing about your attachment style, what would it be?",
+      "You’re doing brilliantly, even if it doesn’t always feel that way. What does support look like to you right now?",
+      "It’s a journey, not a sprint, darling. Is there a small, kind step you might take for yourself this week?"
     ];
+
+    let messageCount = 0;
+    let sessionActive = true;
+    let sessionTimer = setTimeout(showPaywall, 5 * 60 * 1000); // 5 min session
 
     function addMessage(sender, text) {
       const msgDiv = document.createElement('div');
@@ -185,18 +97,45 @@
       chatbox.scrollTop = chatbox.scrollHeight;
     }
 
+    function showPaywall() {
+      sessionActive = false;
+      form.style.display = "none";
+      paywall.style.display = "block";
+      clearTimeout(sessionTimer);
+    }
+
+    function unlockSession() {
+      sessionActive = true;
+      form.style.display = "flex";
+      paywall.style.display = "none";
+      messageCount = 0;
+      sessionTimer = setTimeout(showPaywall, 60 * 60 * 1000); // 1 hour, or as desired
+      addMessage("hillary", "Thank you for becoming a member, love! Now we can truly go deep. What would you like to explore next?");
+    }
+
     form.addEventListener('submit', function(e) {
       e.preventDefault();
+      if (!sessionActive) return;
       const question = userInput.value.trim();
       if (!question) return;
       addMessage('user', question);
       userInput.value = '';
+      messageCount++;
+      if (sessionActive && messageCount >= 5) {
+        setTimeout(showPaywall, 1200); // Small delay so last message still goes through
+      }
       setTimeout(() => {
-        // For demo: pick a random Hillary response
-        const reply = demoResponses[Math.floor(Math.random() * demoResponses.length)];
+        // Pick a longer, thoughtful Hillary response
+        const reply = hillaryResponses[Math.floor(Math.random() * hillaryResponses.length)];
         addMessage('hillary', reply);
-      }, 1000);
+      }, 1200);
     });
+
+    if (buyBtn) {
+      buyBtn.addEventListener('click', function() {
+        unlockSession();
+      });
+    }
   </script>
 </body>
 </html>
